@@ -1,0 +1,2 @@
+# PixelResizer
+ PixelResizer is a streamlined web tool designed with developers in mind. It allows you to upload a single image and instantly generate multiple resized versions, all organized neatly into one folder. Say goodbye to repetitive manual resizing—PixelResizer automates the process, ensuring consistent, high-quality outputs every time. Whether you're working on responsive web designs, mobile app assets, or optimizing images for performance, PixelResizer simplifies your workflow, saving you valuable time and effort.
