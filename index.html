@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>PixelResizer</title>
+    <meta name="description"
+        content="PixelResizer is an advanced yet easy-to-use online tool that lets you resize multiple images at once. Upload a single image, specify different dimensions, and download high-quality resized versions instantly. Ideal for web developers, mobile app designers, and content creators.">
+    <meta name="keywords"
+        content="PixelResizer, image resizer, bulk image resizing, multiple image resize, optimize images, responsive design, web development tools, photo resizer, image compression, online image resizer, resize PNG, resize JPG, fast image resizing, reduce image size, crop images, aspect ratio resizer, high-quality image resizer, web optimization, photo editing, image processing, PixelResizer tool, PixelResizer online">
+    <meta name="author" content="Modraxis (aka Basit)">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:title" content="PixelResizer">
+    <meta property="og:description"
+        content="Resize multiple images instantly with PixelResizer. Upload, resize, and download high-quality images in bulk.">
+    <meta property="og:image" content="https://modraxiss.github.io/PixelResizer/assets/images/social-preview.png">
+    <meta property="og:url" content="https://modraxiss.github.io/PixelResizer/">
+    <meta property="og:type" content="website">
+
+    <link rel="canonical" href="https://modraxiss.github.io/PixelResizer/">
+
+    <link rel="shortcut icon" href="assets/images/icon124.png" type="image/x-icon">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap">
+
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.css">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "PixelResizer",
+        "url": "https://modraxiss.github.io/PixelResizer/",
+        "description": "PixelResizer is an online tool that allows you to resize multiple images in bulk with high-quality results.",
+        "applicationCategory": "DesignApplication",
+        "author": {
+            "@type": "Person",
+            "name": "Modraxis (aka Basit)",
+            "url": "https://github.com/Modraxiss"
+        },
+        "operatingSystem": "All",
+        "browserRequirements": "Requires JavaScript",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        }
+    }
+    </script>
+
+</head>
+
+<body>
+    <header class="navbar">
+        <a href="index.html" class="logo">
+            <img src="assets/images/logo.png" alt="logo" loading="lazy">
+            <span>PixelResizer</span>
+        </a>
+        <nav>
+            <ol>
+                <li>
+                    <a href="index.html" rel="noopener noreferrer">
+                        <i class="bi bi-house-fill"></i>
+                        Home
+                    </a>
+                </li>
+                <li>
+                    <a href="#" rel="noopener noreferrer">
+                        <i class="bi bi-person-fill"></i>
+                        Contact
+                    </a>
+                </li>
+                <li>
+                    <a href="#" rel="noopener noreferrer">
+                        <i class="bi bi-info-circle-fill"></i>
+                        About
+                    </a>
+                </li>
+            </ol>
+        </nav>
+    </header>
+
+    <main>
+        <section id="canvasContainer" class="canvas-container hidden" aria-hidden="true">
+            <span class="canvas-wrapper">
+                <canvas id="previewCanvas"></canvas>
+            </span>
+        </section>
+
+        <section class="container">
+            <h1>Resize Your Images Effortlessly</h1>
+            <p>Select an image, adjust the dimensions, and download your resized image instantly.</p>
+
+            <div class="file-selector">
+                <label for="imageInput" class="file-upload button" button-style="fill">
+                    <input type="file" id="imageInput" accept="image/*" aria-label="Upload an image">
+                    <span id="fileLabel">Upload Image</span>
+                </label>
+                <span id="fileInfo" class="file-info" style="display: none;"></span>
+            </div>
+
+            <div class="options" disabled>
+                <div class="option-container">
+                    <label for="renameFile">Rename File</label>
+                    <input type="text" id="renameFile" minlength="1" maxlength="255">
+                </div>
+
+                <div class="option-container">
+                    <label for="widthInput">Width</label>
+                    <input type="number" id="widthInput" min="1" max="8192">
+                </div>
+
+                <div class="option-container">
+                    <label for="heightInput">Height</label>
+                    <input type="number" id="heightInput" min="1" max="8192">
+                </div>
+
+                <div class="option-container">
+                    <label for="aspectRatio">Maintain Aspect Ratio</label>
+                    <div class="switch-wrapper">
+                        <label class="switch">
+                            <input type="checkbox" id="aspectRatio">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="option-container recommended">
+                    <label for="multipleResize">Multiple Resize</label>
+                    <div class="switch-wrapper">
+                        <label class="switch">
+                            <input type="checkbox" id="multipleResize">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <span class="divider"></span>
+
+                <div class="option-container" style="flex-direction: row;" disabled>
+                    <div class="resize-container">
+                        <button id="addResizeBtn" class="button" button-style="fill">
+                            <i class="bi bi-plus-lg"></i>
+                            Add Resize
+                        </button>
+                    </div>
+                    <div id="resize-list"></div>
+                </div>
+            </div>
+
+            <button id="downloadBtn" class="button" button-style="outline" disabled>Download</button>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-logo">
+                <img src="assets/images/logo.png" alt="PixelResizer Logo" loading="lazy">
+                <span>PixelResizer</span>
+            </div>
+
+            <nav class="footer-nav">
+                <div class="navigation">
+                    <a href="#">About</a>
+                    <a href="#">Contact</a>
+                    <a href="https://github.com/Modraxiss/PixelResizer" target="_blank">GitHub-Repo</a>
+                </div>
+                <div class="footer-social">
+                    <a href="https://github.com/Modraxiss" target="_blank"><i class="bi bi-github"></i></a>
+                    <a href="https://www.facebook.com/muhammad.b.522066" target="_blank">
+                        <i class="bi bi-facebook"></i>
+                    </a>
+                    <a href="https://www.reddit.com/user/Basit_8259/" target="_blank">
+                        <i class="bi bi-reddit"></i>
+                    </a>
+                </div>
+            </nav>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p><i class="bi bi-c-circle-fill"></i> 2025 PixelResizer. All rights reserved.</p>
+            <p>Designed by <name>Modraxis (aka Basit)</name>
+            </p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script type="module" src="js/main.js"></script>
+</body>
+
+</html>
