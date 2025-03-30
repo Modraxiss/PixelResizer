@@ -11,12 +11,11 @@
     <meta name="keywords"
         content="PixelResizer, image resizer, bulk image resizing, multiple image resize, optimize images, responsive design, web development tools, photo resizer, image compression, online image resizer, resize PNG, resize JPG, fast image resizing, reduce image size, crop images, aspect ratio resizer, high-quality image resizer, web optimization, photo editing, image processing, PixelResizer tool, PixelResizer online">
     <meta name="author" content="Modraxis (aka Basit)">
-    <meta name="robots" content="index, follow">
 
     <meta property="og:title" content="PixelResizer">
     <meta property="og:description"
         content="Resize multiple images instantly with PixelResizer. Upload, resize, and download high-quality images in bulk.">
-    <meta property="og:image" content="https://modraxiss.github.io/PixelResizer/assets/images/social-preview.png">
+    <!-- <meta property="og:image" content="https://modraxiss.github.io/PixelResizer/assets/images/social-preview.png"> -->
     <meta property="og:url" content="https://modraxiss.github.io/PixelResizer/">
     <meta property="og:type" content="website">
 
@@ -30,34 +29,12 @@
         href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap">
 
     <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/common.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.css">
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "WebApplication",
-        "name": "PixelResizer",
-        "url": "https://modraxiss.github.io/PixelResizer/",
-        "description": "PixelResizer is an online tool that allows you to resize multiple images in bulk with high-quality results.",
-        "applicationCategory": "DesignApplication",
-        "author": {
-            "@type": "Person",
-            "name": "Modraxis (aka Basit)",
-            "url": "https://github.com/Modraxiss"
-        },
-        "operatingSystem": "All",
-        "browserRequirements": "Requires JavaScript",
-        "offers": {
-            "@type": "Offer",
-            "price": "0",
-            "priceCurrency": "USD"
-        }
-    }
-    </script>
-
 </head>
 
 <body>
-    <header class="navbar">
+    <header class="navbar no-select">
         <a href="index.html" class="logo">
             <img src="assets/images/logo.png" alt="logo" loading="lazy">
             <span>PixelResizer</span>
@@ -65,22 +42,27 @@
         <nav>
             <ol>
                 <li>
-                    <a href="index.html" rel="noopener noreferrer">
-                        <i class="bi bi-house-fill"></i>
-                        Home
+                    <a href="https://discord.gg/5KzPdSYNqx" rel="noopener noreferrer" target="_blank">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16">
+                            <path
+                                d="M13.545 2.907a13.2 13.2 0 0 0-3.257-1.011.05.05 0 0 0-.052.025c-.141.25-.297.577-.406.833a12.2 12.2 0 0 0-3.658 0 8 8 0 0 0-.412-.833.05.05 0 0 0-.052-.025c-1.125.194-2.22.534-3.257 1.011a.04.04 0 0 0-.021.018C.356 6.024-.213 9.047.066 12.032q.003.022.021.037a13.3 13.3 0 0 0 3.995 2.02.05.05 0 0 0 .056-.019q.463-.63.818-1.329a.05.05 0 0 0-.01-.059l-.018-.011a9 9 0 0 1-1.248-.595.05.05 0 0 1-.02-.066l.015-.019q.127-.095.248-.195a.05.05 0 0 1 .051-.007c2.619 1.196 5.454 1.196 8.041 0a.05.05 0 0 1 .053.007q.121.1.248.195a.05.05 0 0 1-.004.085 8 8 0 0 1-1.249.594.05.05 0 0 0-.03.03.05.05 0 0 0 .003.041c.24.465.515.909.817 1.329a.05.05 0 0 0 .056.019 13.2 13.2 0 0 0 4.001-2.02.05.05 0 0 0 .021-.037c.334-3.451-.559-6.449-2.366-9.106a.03.03 0 0 0-.02-.019m-8.198 7.307c-.789 0-1.438-.724-1.438-1.612s.637-1.613 1.438-1.613c.807 0 1.45.73 1.438 1.613 0 .888-.637 1.612-1.438 1.612m5.316 0c-.788 0-1.438-.724-1.438-1.612s.637-1.613 1.438-1.613c.807 0 1.451.73 1.438 1.613 0 .888-.631 1.612-1.438 1.612" />
+                        </svg>
                     </a>
                 </li>
                 <li>
-                    <a href="#" rel="noopener noreferrer">
-                        <i class="bi bi-person-fill"></i>
-                        Contact
+                    <a href="https://github.com/Modraxiss/PixelResizer" rel="noopener noreferrer" target="_blank">
+                        <i class="bi bi-github"></i>
                     </a>
                 </li>
                 <li>
-                    <a href="#" rel="noopener noreferrer">
+                    <div rel="noopener noreferrer" id="info">
                         <i class="bi bi-info-circle-fill"></i>
-                        About
-                    </a>
+                    </div>
+                </li>
+                <li disabled>
+                    <div rel="noopener noreferrer" id="settings">
+                        <i class="bi bi-gear-fill"></i>
+                    </div>
                 </li>
             </ol>
         </nav>
@@ -156,10 +138,20 @@
 
             <button id="downloadBtn" class="button" button-style="outline" disabled>Download</button>
         </section>
+
+        <section>
+            <div id="modal-overlay">
+                <button id="close"><i class="bi bi-x-lg"></i></button>
+                <div class="modal">
+                    <div class="header no-select"></div>
+                    <div class="body"></div>
+                </div>
+            </div>
+        </section>
     </main>
 
     <footer>
-        <div class="footer-container">
+        <div class="footer-container no-select">
             <div class="footer-logo">
                 <img src="assets/images/logo.png" alt="PixelResizer Logo" loading="lazy">
                 <span>PixelResizer</span>
@@ -167,9 +159,10 @@
 
             <nav class="footer-nav">
                 <div class="navigation">
-                    <a href="#">About</a>
-                    <a href="#">Contact</a>
-                    <a href="https://github.com/Modraxiss/PixelResizer" target="_blank">GitHub-Repo</a>
+                    <div id="info" class="link">About</div>
+                    <a href="https://discord.gg/5KzPdSYNqx" target="_blank" class="link">Contact</a>
+                    <a href="https://github.com/Modraxiss/PixelResizer" target="_blank"
+                        class="OINTI link">GitHub-Repo</a>
                 </div>
                 <div class="footer-social">
                     <a href="https://github.com/Modraxiss" target="_blank"><i class="bi bi-github"></i></a>
@@ -185,7 +178,7 @@
         </div>
 
         <div class="footer-bottom">
-            <p><i class="bi bi-c-circle-fill"></i> 2025 PixelResizer. All rights reserved.</p>
+            <p>&copy; 2025 PixelResizer. All rights reserved.</p>
             <p>Designed by <name>Modraxis (aka Basit)</name>
             </p>
         </div>
@@ -193,6 +186,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
     <script type="module" src="js/main.js"></script>
+    <script src="js/modalHandler.js"></script>
 </body>
 
 </html>

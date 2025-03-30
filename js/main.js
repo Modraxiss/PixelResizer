@@ -36,8 +36,8 @@ imageInput.addEventListener('change', function () {
     loadImage(file, originalImage);
     fileLabel.textContent = "Reupload Image";
 
-    const { name, ext } = getFileDetails(file);
-    const filename = `<i class="bi bi-image-fill"></i> ${name.slice(0, 10)}.${ext}`;
+    let { name, ext } = getFileDetails(file);
+    const filename = `<i class="bi bi-image-fill"></i> ${name.length > 16 ? name.slice(0, 16) + ".." : name}.${ext}</i>`;
 
     renameFileInput.placeholder = name;
     fileInfo.style.display = "block";
@@ -97,7 +97,7 @@ function toggleResizeInputs() {
 
 multipleResize.addEventListener("change", toggleResizeInputs);
 addResizeBtn.addEventListener('click', () => {
-    if (resizeList.children.length >= 20) return alert("You can add up to 20 resize options only.");
+    if (resizeList.children.length >= 12) return alert("You can add up to 12 resize options only.");
 
     const divId = Date.now();
     const div = document.createElement('div');
@@ -116,32 +116,27 @@ addResizeBtn.addEventListener('click', () => {
 
     resizeOptions.push({ id: divId, width: 0, height: 0 });
 
-    if (resizeList.children.length >= 20) addResizeBtn.setAttribute("disabled", true);
+    if (resizeList.children.length === 12) addResizeBtn.setAttribute("disabled", true);
 
-    updateRemoveButtons();
-});
-
-function updateRemoveButtons() {
-    const removeButtons = document.querySelectorAll('.removeResizeBtn');
+    const removeBtns = document.querySelectorAll('.removeResizeBtn');
     if (resizeList.children.length <= 1) {
-        removeButtons.forEach(btn => btn.setAttribute("disabled", true));
+        removeBtns.forEach(btn => btn.setAttribute("disabled", true));
     } else {
-        removeButtons.forEach(btn => btn.removeAttribute("disabled"));
+        removeBtns.forEach(btn => btn.removeAttribute("disabled"));
     }
-}
+});
 
 window.addEventListener("scroll", function () {
     const navbar = document.querySelector(".navbar");
 
-    if (window.scrollY > 20) {
+    if (window.scrollY > 10) {
         classList(navbar, "scroll");
     } else {
         classList(navbar, "scroll", false);
     }
-
 });
 
-const observer = new IntersectionObserver(
+const canvasObserver = new IntersectionObserver(
     (entries) => {
         entries.forEach((entry) => {
             if (entry.isIntersecting) {
@@ -153,11 +148,11 @@ const observer = new IntersectionObserver(
     },
     {
         root: null,
-        threshold: 0.1
+        threshold: 0.7
     }
 );
 
-observer.observe(footer);
+canvasObserver.observe(footer);
 
 downloadBtn.addEventListener('click', async () => {
     try {

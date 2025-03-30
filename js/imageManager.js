@@ -115,9 +115,9 @@ export async function setupMultiResizeEvents(div, id, htmlList, jsList, addBtn, 
         const height = parseInt(heightField.value);
 
         if (!width || !height || width <= 0 || height <= 0) {
-            resizeIcon.style.color = "var(--balanced-red)";
+            resizeIcon.style.color = "var(--Bright-Red)";
         } else {
-            resizeIcon.style.color = "var(--balanced-green)";
+            resizeIcon.style.color = "var(--Bright-Green)";
         }
     }
 
@@ -143,6 +143,6 @@ export async function setupMultiResizeEvents(div, id, htmlList, jsList, addBtn, 
             removeButtons.forEach(btn => btn.removeAttribute("disabled"));
         }
 
-        if (htmlList.children.length <= 20) addBtn.removeAttribute("disabled");
+        if (htmlList.children.length < 12) addBtn.removeAttribute("disabled");
     });
 }
